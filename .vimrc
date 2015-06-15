@@ -11,11 +11,15 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'scrooloose/syntastic'  " linting for many languages
+Plugin 'scrooloose/nerdtree'  " file tree
 Plugin 'kchmck/vim-coffee-script'  " Coffeescript integration
 Plugin 'tpope/vim-fugitive'  " Git integration
 " Plugin 'davidhalter/jedi-vim'  " Python autocomplete via Jedi
 Plugin 'Valloric/YouCompleteMe'  " Maybe better autocomplete?
 Plugin 'gregsexton/MatchTag'
+Plugin 'ekalinin/Dockerfile.vim' " syntax for docker
+Plugin 'rust-lang/rust.vim'
+Plugin 'bling/vim-airline'  " Powerline-like interface in vimscript
 
 
 
@@ -39,7 +43,7 @@ syntax on
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 
-" YCM
+" YouCompleteMe settings
 let g:ycm_autoclose_preview_window_after_completion = 0
 let g:ycm_autoclose_preview_window_after_insertion = 0
 
@@ -52,3 +56,21 @@ autocmd BufNewFile,BufReadPost *.coffee set shiftwidth=2 softtabstop=2 tabstop=2
 
 filetype plugin on
 runtime macros/matchit.vim
+
+" Macros
+cnoremap sudow w !sudo tee % >/dev/null
+
+" Default register to system buffer
+set clipboard=unnamedplus
+
+" NerdTree hotkey
+silent! nmap <C-p> :NERDTreeToggle<CR>
+silent! map <F3> :NERDTreeFind<CR>
+
+let g:NERDTreeMapActivateNode="<F3>"
+let g:NERDTreeMapPreview="<F4>"
+
+" Airline settings
+let g:airline_theme	 		= 'powerlineish'
+let g:airline#extensions#branch#enabled	= 1
+set lazyredraw
