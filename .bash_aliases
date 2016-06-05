@@ -6,9 +6,9 @@ alias ...='cd ../..'
 alias l='ls'
 alias ack='ack-grep'
 source /home/kcole/.bash_prompt
-export PATH=$PATH:/usr/local/go/bin:/home/kcole/bin:
-export GOPATH=$HOME/golang
-export PATH=$PATH:$GOPATH/bin
+export GOPATH=$HOME
+export GOROOT=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$HOME/bin
 
 export PYTHONDONTWRITEBYTECODE=1
 
