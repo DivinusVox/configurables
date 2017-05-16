@@ -25,6 +25,9 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'fatih/vim-go'
 Plugin 'saltstack/salt-vim'
 Plugin 'stephpy/vim-yaml'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'Shougo/vimproc.vim'
 
 
 
@@ -48,6 +51,8 @@ syntax on
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 " YouCompleteMe settings
 let g:ycm_autoclose_preview_window_after_completion = 0
@@ -56,9 +61,10 @@ let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
 
 
-
+" Filetype spacing
 autocmd FileType python set shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 autocmd FileType javascript set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
+autocmd FileType typescript set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 autocmd BufNewFile,BufReadPost *.html set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 autocmd BufNewFile,BufReadPost *.coffee set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 
@@ -79,6 +85,13 @@ fun! BufDoWhitespace()
 endfun
 
 nmap <F4> :call BufDoWhitespace()<CR>
+
+fun! TSRun()
+  execute 'make'
+  execute '!node %:r.js'
+endfun
+command TSRun 'call TSRun()'
+
 
 cnoremap sudow w !sudo tee % >/dev/null
 
